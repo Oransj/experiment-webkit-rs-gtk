@@ -1,10 +1,14 @@
+use current_platform::{COMPILED_ON, CURRENT_PLATFORM};
 use gtk4::{glib, prelude::*, ApplicationWindow};
 use webkit6::{prelude::*, WebView};
-use current_platform::{COMPILED_ON, CURRENT_PLATFORM};
 
+//Code from https://gitlab.gnome.org/World/Rust/webkit6-rs/-/tree/main/examples?ref_type=heads
 fn main() -> glib::ExitCode {
     let app = gtk4::Application::new(Some("org.gnome.webkit6-rs.example"), Default::default());
-    println!("Hello, world from {}! I was compiled on {}.", CURRENT_PLATFORM, COMPILED_ON);
+    println!(
+        "Hello, world from {}! I was compiled on {}.",
+        CURRENT_PLATFORM, COMPILED_ON
+    );
     app.connect_activate(move |app| {
         let window = ApplicationWindow::new(app);
         let webview = WebView::new();
